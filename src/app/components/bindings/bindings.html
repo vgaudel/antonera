@@ -1,0 +1,71 @@
+<h1>{{title}}</h1>
+
+<!-- 1. Interpolation : {{ expression }} -->
+ <div>
+    <h2>1. Interpolation</h2>
+    <p>Bonjour {{user.firstname}} {{user.lastname}}</p>
+    <p>2 + 3 = {{2 + 3}}</p>
+ </div>
+
+<!-- 2. Property binding : [propriété]="expression" -->
+
+<div>
+    <h2>2. Property binding</h2>
+    <img [src]="imageUrl" alt="logo" width="30px" height="30px">
+    <button [disabled]="isButtonDisabled">Bouton</button>
+</div>
+
+<!-- 3. Attribute binding : [attr.xxx]="expression" -->
+
+<div>
+    <h2>3. Attribute binding</h2>
+    <table border="1">
+        <tr>
+            <td [attr.colspan]="colspanValue">Cellule fusionnée sur {{colspanValue}} colonnes</td>
+        </tr>
+        <tr>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+        </tr>
+    </table>
+</div>
+
+<!-- 4. Class binding : [class.xxx]="booléen" -->
+
+<div>
+    <h2>4. Class Binding</h2>
+    <p [class.active]="isActive">Ce texte est actif : {{isActive}}</p>
+</div>
+
+<!-- 5. Style binding : [style.xxx]="valeur" -->
+
+<div>
+    <h2>5. Style Binding</h2>
+    <p [style.color]="textColor" [style.font-size.px]="fontSize">
+        Texte stylisé dynamiquement
+    </p>
+</div>
+
+<!-- 6. Event binding : (event)="fct()" -->
+ <div>
+    <h2>6. Event Binding</h2>
+    <button (click)="incrementerCounter()" (mouseleave)="test()">Cliquez-moi</button>
+    <button (click)="toggleButton()" >Activer/désactiver le bouton ci-dessus</button>
+    <p>Nombre de clics : {{clickCount}}</p>
+ </div>
+
+ <!-- 7. Two-way binding : [(ngModel)]="propriété" -->
+
+ <div>
+    <h2>7. Two-way binding</h2>
+    <input type="text" [(ngModel)]="username" placeholder="Votre nom" />
+    <p>Vous avez saisi : {{username}}</p>
+ </div>
+
+ <!-- Bonus : two-way "manuel" (property + event binding combinés) -->
+<div>
+  <h3>Bonus : two-way manuel</h3>
+  <input [value]="username" (keyup)="onKeyUp($any($event.target).value)" placeholder="Votre nom" />
+  <p>Synchronisé : {{ username }}</p>
+</div>

@@ -1,0 +1,55 @@
+<h1>Démonstration des Signals Angular</h1>
+
+<!-- 1. signal() vs propriété classique -->
+<div>
+    <h2>1. signal() vs propriété classique</h2>
+    <p>count1 (propriété) : {{count1}}</p>
+    <p>count2 (signal) : {{count2()}}</p>
+    <p><em>count1 change après 5s, count2 après 3s (voir constructor).</em></p>
+</div>
+
+<!-- 2. computed() : valeur dérivée automatique -->
+<div>
+    <h2>2. &#64;computed() : valeur dérivée</h2>
+    <p>Prix HT : {{prixHT()}}</p>
+    <p>TVA (%) : {{tva()}}</p>
+    <p>Prix TTC calculé automatiquement : {{prixTTC()}}</p>
+</div>
+
+<!-- 3. .update() : modifier à partir de la valeur précédente -->
+<div>
+    <h2>3. .update() : modifier à partir de la valeur précédente</h2>
+    <p>Compteur : {{compteur()}}</p>
+    <button (click)="decrementer()">-</button>
+    <button (click)="incrementer()">+</button>
+</div>
+
+<!-- 4. Signal de type tableau (mise à jour immuable) -->
+<div>
+    <h2>4. Signal de type tableau (mise à jour immuable)</h2>
+    <ul>
+        @for (fruit of paniers(); track fruit) {
+            <li>{{fruit}}</li>
+        }
+    </ul>
+    <button (click)="ajouterFruit('Orange')">Ajouter Orange</button>
+</div>
+
+<!-- 5. untracked() : suivre un signal, en lire un autre sans s'y abonner -->
+<div>
+    <h2>5. untracked() : lire un signal sans s'y abonner</h2>
+    <p>Score : {{score()}}</p>
+    <p>Niveau : {{niveau()}}</p>
+    <button (click)="gagnerPoints()">Gagner 10 pts</button>
+    <button (click)="monterNiveau()">Monter niveau</button>
+    <p><em>Ouvre la console : "Gagner 10 pts" écrit un log, "Monter niveau" n'en écrit pas.</em></p>
+</div>
+
+<!-- 6. linkedSignal() : dérivé mais modifiable -->
+<div>
+    <h2>6. linkedSignal() : dérivé mais modifiable</h2>
+    <p>Choix actuel : {{choix()}}</p>
+    @for (option of options(); track option) {
+        <button (click)="changerChoix(option)">{{option}}</button>
+    }
+</div>
