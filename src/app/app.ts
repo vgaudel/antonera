@@ -6,6 +6,8 @@ import { Bindings } from './components/bindings/bindings';
 import { ControlFlow } from './components/control-flow/control-flow';
 import { ExosBindings } from './components/exos-bindings/exos-bindings';
 import { Signals } from './components/signals/signals';
+import { ProduitList } from './components/produit-list/produit-list';
+import { VoteList } from './components/vote-list/vote-list';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +19,8 @@ import { Signals } from './components/signals/signals';
     ControlFlow,
     ExosBindings,
     Signals,
+    ProduitList,
+    VoteList,
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss'

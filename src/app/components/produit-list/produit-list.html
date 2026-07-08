@@ -1,0 +1,16 @@
+<p>produit-list works!</p>
+
+<!--
+  COMMENT ÇA MARCHE ?
+  ====================
+  1. Le composant PARENT possède les données (ici : la liste de produits).
+  2. Il les transmet au composant ENFANT via la syntaxe [nomInput]="valeur".
+  3. Le composant ENFANT déclare ses inputs avec input.required().
+  4. Le flux de données est UNIDIRECTIONNEL : Parent → Enfant uniquement.
+-->
+
+@for(produitItem of produitsList; track produitItem.ref){
+    <app-produit-card [produit]="produitItem" />
+}
+
+<button (click)="augmenterLesPrix()">Inflation</button>
