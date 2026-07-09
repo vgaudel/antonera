@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Eb01Interpolation } from './eb01-interpolation/eb01-interpolation';
 import { Eb02Property } from './eb02-property/eb02-property';
@@ -10,6 +10,7 @@ import { Eb07If } from './eb07-if/eb07-if';
 import { Eb08For } from './eb08-for/eb08-for';
 import { Eb09Switch } from './eb09-switch/eb09-switch';
 import { Eb10Combine } from './eb10-combine/eb10-combine';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-exos-bindings',
@@ -30,6 +31,8 @@ import { Eb10Combine } from './eb10-combine/eb10-combine';
 })
 export class ExosBindings {
   
+private _activatedRoute = inject(ActivatedRoute);
+
   subComponents: string[] = [
     'eb01-interpolation',
     'eb02-property',
@@ -42,5 +45,16 @@ export class ExosBindings {
     'eb09-switch',
     'eb10-combine',
   ];
-  selectedSubcomponent: string = this.subComponents[10];
+  selectedSubcomponent: string ;
+
+  isIndexOutOfBounds : boolean = false;
+
+  constructor(){
+    let indice: number = this._activatedRoute.snapshot.paramMap.get('numExo')?
+                         Number(this._activatedRoute.snapshot.paramMap.get('numExo')):1;
+    this.isIndexOutOfBounds = (this._activatedRoute.snapshot.paramMap.get('numExo')) ? (
+      (indice-1<0) || (indice-1>this.subComponents.length)) : false;
+
+    this.selectedSubcomponent = this.subComponents[this.isIndexOutOfBounds?0:indice-1];
+  }
 }

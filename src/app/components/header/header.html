@@ -1,1 +1,16 @@
-<p>header works!</p>
+<header>
+
+    <img src="beard.svg" alt="logo" width="30px" height="30px"
+        (click)="goToWelcome()"  
+        style="cursor : pointer;" >
+
+    <b (click)="goToWelcome()" style="cursor : pointer;">{{titleHeader() | titlecase}}</b>
+
+    <a routerLink="/bindings">Bindings</a>
+    <a routerLink="/exos-bindings">exos-Bindings</a>
+    <a routerLink="/signals">Signals</a>
+    <a routerLink="/exos-signals">exosSignals</a>
+    <a routerLink="/control-flow">ControlFlow</a>
+    <a routerLink="/pipes">Pipes</a>
+</header>
+

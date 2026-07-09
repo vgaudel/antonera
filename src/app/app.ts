@@ -8,19 +8,16 @@ import { ExosBindings } from './components/exos-bindings/exos-bindings';
 import { Signals } from './components/signals/signals';
 import { ProduitList } from './components/produit-list/produit-list';
 import { VoteList } from './components/vote-list/vote-list';
+import { ExosIO } from './components/exos-io/exos-io';
+import { Pipes } from './components/pipes/pipes';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   imports: [
-    TextInterpolation,
+    RouterOutlet,
     Header,
     Footer,
-    Bindings,
-    ControlFlow,
-    ExosBindings,
-    Signals,
-    ProduitList,
-    VoteList,
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss'

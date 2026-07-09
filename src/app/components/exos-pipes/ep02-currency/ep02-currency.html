@@ -1,0 +1,5 @@
+<h3>Exercice 2 — Formatage d'un prix en devise</h3>
+<p>Prix brut : {{ prix }}</p>
+<p>EUR       : {{ prix | currency:'EUR' }}</p>
+<p>USD       : {{ prix | currency:'USD':'symbol':'1.0-0' }}</p>
+<p>GBP       : {{ prix | currency:'GBP' }}</p>

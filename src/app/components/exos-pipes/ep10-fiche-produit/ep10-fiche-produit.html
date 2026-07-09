@@ -1,0 +1,7 @@
+<h3>Exercice 10 — Fiche produit (combinaison de pipes)</h3>
+<ul>
+  <li>Nom   : {{ produit.nom | titlecase }}</li>
+  <li>Prix  : {{ produit.prix | currency:'EUR' }}</li>
+  <li>Date  : {{ produit.dateAjout | date:'dd/MM/yyyy' }}</li>
+  <li>Stock : {{ produit.stock | number:'1.0-0' }}</li>
+</ul>

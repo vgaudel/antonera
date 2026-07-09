@@ -1,0 +1,11 @@
+<h3>Exercice 8 — Slice sur un tableau</h3>
+<p>3 premiers : {{ pays | slice:0:3 }}</p>
+<p>Position 3 a 6 : {{ pays | slice:3:6 }}</p>
+<p>3 derniers : {{ pays | slice:-3 }}</p>
+
+<h4>Avec @ for :</h4>
+<ul>
+  @for (p of pays | slice:0:3; track p) {
+    <li>{{ p }}</li>
+  }
+</ul>

@@ -1,10 +1,18 @@
 <h3>Exos-bindings</h3>
 
+@if(isIndexOutOfBounds){
+    <div>
+        <b style="color:red">L'exercice demandé n'existe pas.</b>
+    </div>
+}
+
+
 <select [(ngModel)] ="selectedSubcomponent"> 
     @for(comp of subComponents; track $index){
         <option [ngValue] ='comp'>{{comp}}</option>
     }
 </select>
+
 
 @switch(selectedSubcomponent){
     @case ('eb01-interpolation') { <app-eb01-interpolation /> }

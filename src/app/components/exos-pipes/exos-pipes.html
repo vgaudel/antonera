@@ -1,0 +1,21 @@
+<h2>Exercices — Les Pipes Angular</h2>
+
+<select [(ngModel)]="selectedComponent">
+    @for (comp of composants; track comp) {
+        <option [ngValue]="comp">{{ comp }}</option>
+    }
+</select>
+
+@switch (selectedComponent) {
+    @case ('ep01-chaines') { <app-ep01-chaines></app-ep01-chaines> }
+    @case ('ep02-currency') { <app-ep02-currency></app-ep02-currency> }
+    @case ('ep03-percent') { <app-ep03-percent></app-ep03-percent> }
+    @case ('ep04-number') { <app-ep04-number></app-ep04-number> }
+    @case ('ep05-date-predefini') { <app-ep05-date-predefini></app-ep05-date-predefini> }
+    @case ('ep06-date-perso') { <app-ep06-date-perso></app-ep06-date-perso> }
+    @case ('ep07-slice-chaine') { <app-ep07-slice-chaine></app-ep07-slice-chaine> }
+    @case ('ep08-slice-tableau') { <app-ep08-slice-tableau></app-ep08-slice-tableau> }
+    @case ('ep09-json') { <app-ep09-json></app-ep09-json> }
+    @case ('ep10-fiche-produit') { <app-ep10-fiche-produit></app-ep10-fiche-produit> }
+    @default { <p>Sélectionnez un composant</p> }
+}
