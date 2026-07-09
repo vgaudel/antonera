@@ -1,4 +1,4 @@
-<header>
+<header [style.--couleur-ombre]="preferenceService.couleurPreferee()">
 
     <img src="beard.svg" alt="logo" width="30px" height="30px"
         (click)="goToWelcome()"  
@@ -12,5 +12,9 @@
     <a routerLink="/exos-signals">exosSignals</a>
     <a routerLink="/control-flow">ControlFlow</a>
     <a routerLink="/pipes">Pipes</a>
+    <a routerLink="/exos-io/ei01-carte">Exos-IO</a>
+    <a routerLink="/exos-material">Material</a>
+    <a routerLink="/produits">ProduitsV1</a>
+    <a routerLink="/produits-table">ProduitsTable</a>
 </header>
 

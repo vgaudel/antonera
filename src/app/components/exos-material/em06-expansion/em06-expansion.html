@@ -1,0 +1,20 @@
+<h3>Em06 — FAQ avec panneaux d'expansion</h3>
+
+<!--
+  mat-expansion-panel : panneau accordéon Material.
+  [(expanded)] : synchronise l'état ouvert/fermé avec la propriété du tableau.
+  mat-panel-title : zone de titre dans mat-expansion-panel-header.
+  @for génère un panneau par entrée FAQ.
+-->
+@for (item of faq; track item.question) {
+  <mat-expansion-panel [(expanded)]="item.expanded">
+    <mat-expansion-panel-header>
+      <mat-panel-title>{{ item.question }}</mat-panel-title>
+    </mat-expansion-panel-header>
+    <p>{{ item.reponse }}</p>
+  </mat-expansion-panel>
+}
+
+<div style="margin-top: 1rem; text-align: right">
+  <button mat-stroked-button (click)="toutFermer()">Tout fermer</button>
+</div>

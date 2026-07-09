@@ -1,0 +1,45 @@
+<h3>Em09 — Saisie de tags avec autocomplétion</h3>
+
+<!--
+  Combinaison mat-chip-grid + mat-autocomplete :
+
+  mat-chip-grid : conteneur éditable de chips (vs mat-chip-set qui est statique).
+  mat-chip-row  : chip individuel dans un chip-grid, avec bouton de suppression.
+  matChipRemove : directive sur le bouton <button> pour retirer le chip.
+
+  [matChipInputFor] : relie l'<input> au mat-chip-grid.
+  [matAutocomplete] : relie l'<input> au panneau d'autocomplétion.
+  (optionSelected)  : déclenché quand l'utilisateur clique sur une suggestion.
+-->
+<mat-form-field appearance="outline" style="width: 100%">
+  <mat-label>Compétences</mat-label>
+
+  <mat-chip-grid #chipGrid>
+    @for (comp of selectionnes(); track comp) {
+      <mat-chip-row (removed)="retirer(comp)">
+        {{ comp }}
+        <button matChipRemove aria-label="Retirer {{ comp }}">
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip-row>
+    }
+
+    <input
+      #saisieInput
+      [formControl]="saisieCtrl"
+      [matChipInputFor]="chipGrid"
+      [matAutocomplete]="auto"
+      placeholder="Ajouter une compétence…">
+  </mat-chip-grid>
+
+  <mat-autocomplete #auto (optionSelected)="ajouter($event)">
+    @for (s of suggestionsFiltrees(); track s) {
+      <mat-option [value]="s">{{ s }}</mat-option>
+    }
+  </mat-autocomplete>
+
+</mat-form-field>
+
+@if (selectionnes().length > 0) {
+  <p>Sélectionnées : <strong>{{ selectionnes().join(', ') }}</strong></p>
+}

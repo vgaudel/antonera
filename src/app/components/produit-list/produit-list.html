@@ -1,4 +1,4 @@
-<p>produit-list works!</p>
+<app-produit-add-form  (productAdded)="loadProducts()"/>
 
 <!--
   COMMENT ÇA MARCHE ?
@@ -9,8 +9,7 @@
   4. Le flux de données est UNIDIRECTIONNEL : Parent → Enfant uniquement.
 -->
 
-@for(produitItem of produitsList; track produitItem.ref){
+@for(produitItem of produitsList(); track produitItem.id){
     <app-produit-card [produit]="produitItem" />
 }
 
-<button (click)="augmenterLesPrix()">Inflation</button>

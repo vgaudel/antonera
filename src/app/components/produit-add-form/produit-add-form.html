@@ -1,0 +1,88 @@
+<div>
+
+    <h3>Ajouter un produit</h3>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="auth-form">
+        @let nameFC = form.get('name');
+        @let descriptionFC = form.get('description');
+        @let priceFC = form.get('price');
+        @let categoryFC = form.get('category');
+        @let stockFC = form.get('stock');
+
+        <mat-form-field appearance="outline">
+            <mat-label>
+                Nom du produit
+            </mat-label>
+            <input matInput formControlName="name" placeholder="Entrez le nom ici">
+            @if(nameFC?.hasError('required')){
+                <mat-error>Le nom du produit est obligatoire.</mat-error>
+            } @else if (nameFC?.hasError('minlength')) {
+                <mat-error>Nom de {{nameFC?.getError('minlength').requiredLength}} caractères.
+                    Actuellement {{nameFC?.getError('minlength').actualLength}} caractère@if(nameFC?.getError('minlength').actualLength>1){s}.
+                </mat-error>
+            }
+            
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>
+                Description
+            </mat-label>
+            <input matInput formControlName="description" placeholder="Ex. Pack d'outils...">
+             @if(descriptionFC?.hasError('required')){
+                <mat-error>La description du produit est obligatoire.</mat-error>
+            } @else if (descriptionFC?.hasError('minlength')) {
+                <mat-error>Description de {{descriptionFC?.getError('minlength').requiredLength}} caractères minimum.
+                    Actuellement {{descriptionFC?.getError('minlength').actualLength}} caractère@if(nameFC?.getError('minlength').actualLength>1){s}.
+                </mat-error>
+            }@else if (descriptionFC?.hasError('maxlength')) {
+                <mat-error>Description de {{descriptionFC?.getError('maxlength').requiredLength}} caractères maximum.
+                    Actuellement {{descriptionFC?.getError('maxlength').actualLength}} caractère@if(descriptionFC?.getError('maxlength').actualLength>1){s}.
+                </mat-error>
+            }
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline">
+            <mat-label>
+                Prix
+            </mat-label>
+            <input matInput type="number" formControlName="price" placeholder="99.99">
+             @if(priceFC?.hasError('required')){
+                <mat-error>Le prix du produit est obligatoire.</mat-error>
+            } @else if (priceFC?.hasError('min')) {
+                <mat-error>Le prix doit être supérieur à 0.</mat-error>
+            }
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline">
+            <mat-label>
+                Categorie
+            </mat-label>
+            <input matInput formControlName="category" placeholder="Ex. Matériel jardinage">
+             @if(categoryFC?.hasError('required')){
+                <mat-error>La catégorie du produit est obligatoire.</mat-error>
+            } 
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline">
+            <mat-label>
+                Stock
+            </mat-label>
+            <input matInput type='number' formControlName="stock" placeholder="123">
+             @if(stockFC?.hasError('required')){
+                <mat-error>Le prix du produit est obligatoire.</mat-error>
+            } @else if (stockFC?.hasError('min')) {
+                <mat-error>Le stock doit être positif ou nul.</mat-error>
+            }
+        </mat-form-field>
+
+        <div>
+            <!-- <button mat-raised-button type="submit" [disabled]="form.invalid">Enregistrer</button> -->
+            <button mat-raised-button type="submit">Enregistrer</button>
+            <!-- <button matButton="tonal">Effacer</button> -->
+        </div>
+
+
+    </form>
+
+</div>

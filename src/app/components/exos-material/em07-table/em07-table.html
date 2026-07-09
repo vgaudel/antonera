@@ -1,0 +1,36 @@
+<h3>Em07 — Tableau de données triable</h3>
+
+<!--
+  mat-table : tableau Material, lié à un MatTableDataSource.
+  matSort    : directive appliquée sur le <table> pour activer le tri.
+  mat-sort-header : rend la cellule d'en-tête cliquable pour trier.
+
+  Pour chaque colonne, on déclare :
+    - <ng-container matColumnDef="xxx"> : définition de la colonne
+    - <th mat-header-cell> et <td mat-cell> : cellules via les *Def
+  Puis on déclare les lignes avec *matHeaderRowDef et *matRowDef.
+-->
+<table mat-table [dataSource]="dataSource" matSort>
+
+  <!-- Colonne Nom -->
+  <ng-container matColumnDef="nom">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom</th>
+    <td mat-cell *matCellDef="let e">{{ e.nom }}</td>
+  </ng-container>
+
+  <!-- Colonne Département -->
+  <ng-container matColumnDef="departement">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Département</th>
+    <td mat-cell *matCellDef="let e">{{ e.departement }}</td>
+  </ng-container>
+
+  <!-- Colonne Salaire -->
+  <ng-container matColumnDef="salaire">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Salaire (€)</th>
+    <td mat-cell *matCellDef="let e">{{ e.salaire | number }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="colonnes"></tr>
+  <tr mat-row *matRowDef="let row; columns: colonnes;"></tr>
+
+</table>

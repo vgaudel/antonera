@@ -1,7 +1,8 @@
 <div class="carte-produit">
-    <h4>{{produit().label}}</h4>
-    <p>Réf: {{produit().ref}}</p>
-    <p>Prix: <b>{{produit().prix | currency:'EUR'}}</b></p>
-    <p class="categorie">Catégorie: {{produit().categorie | titlecase}}</p>
+    <h4>{{produit().name}}</h4>
+    <p>Réf: {{produit().id}}</p>
+    <p>Prix: <b>{{produit().price | currency:'EUR'}}</b></p>
+    <p class="categorie">Catégorie: {{produit().category | titlecase}}</p>
+    <p>Stock: {{produit().stock}}</p>
 </div>
 

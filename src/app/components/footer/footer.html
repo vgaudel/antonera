@@ -1,1 +1,14 @@
-<p>footer works!</p>
+<footer [style.background-color]="preferenceService.couleurPreferee()">
+
+    <p>&copy; Antonera</p>
+    <label for="couleur"> Choisir une couleur préférée:</label>
+    <select name="couleur" [(ngModel)]="preferenceService.couleurPreferee">
+        @for(couleur of preferenceService.CSS_COLOR_NAMES | keyvalue; track couleur){
+            <option [value]="couleur.value">{{couleur.key}}</option>
+        }
+    </select>
+
+    {{preferenceService.couleurPreferee()}}
+
+
+</footer>

@@ -1,23 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { IProduit } from '../../model/IProduit';
 import { ProduitCard } from '../produit-card/produit-card';
+import { MockProductService } from '../../services/mock-product-service';
+import { ProduitAddForm } from '../produit-add-form/produit-add-form';
 
 @Component({
   selector: 'app-produit-list',
-  imports: [ProduitCard],
+  imports: [ProduitCard, ProduitAddForm],
   templateUrl: './produit-list.html',
   styleUrl: './produit-list.scss',
 })
 export class ProduitList {
 
-  produitsList: IProduit[] =
-    [
-      { ref: 'p1', label: 'iPhone 16', prix: 999, categorie: 'smartphone' },
-      { ref: 'p2', label: 'MacBook Air M4', prix: 1299, categorie: 'laptop' },
-      { ref: 'p3', label: 'AirPods Pro 3', prix: 279, categorie: 'accessoire' },
-    ];
+  private _mockProductService = inject(MockProductService);
+  produitsList = signal(this._mockProductService.getAllProducts());
 
-  augmenterLesPrix(){
-    this.produitsList = this.produitsList.map(produitItem => ({ ...produitItem, prix: produitItem.prix * 1.1 }));
+  loadProducts(){
+    this.produitsList = signal(this._mockProductService.getAllProducts());
   }
+
 }

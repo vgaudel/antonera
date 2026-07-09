@@ -1,0 +1,25 @@
+<h3>Em04 — Chips de filtrage</h3>
+
+<!--
+  mat-chip-set : conteneur de chips non-interactif (affichage).
+  [highlighted] : applique le style "sélectionné" du thème Material.
+  (click) : bascule l'état via l'index.
+-->
+<mat-chip-set style="margin-bottom: 1rem">
+  @for (cat of categories(); track cat.nom; let i = $index) {
+    <mat-chip
+      [highlighted]="cat.selectionnee"
+      (click)="basculer(i)"
+      style="cursor: pointer">
+      {{ cat.nom }}{{ cat.selectionnee ? ' ✓' : '' }}
+    </mat-chip>
+  }
+</mat-chip-set>
+
+<p>
+  @if (selection().length > 0) {
+    Sélection : <strong>{{ selection().join(', ') }}</strong>
+  } @else {
+    <em>Aucune catégorie sélectionnée</em>
+  }
+</p>

@@ -1,0 +1,49 @@
+<h3>Em10 — CRUD avec Dialog et Snackbar</h3>
+
+<!--
+  MatDialog : service injectable qui ouvre un composant dans une fenêtre modale.
+  MatSnackBar : service qui affiche une notification temporaire en bas d'écran.
+  MatTableDataSource : encapsule les données et expose dataSource.data pour le tableau.
+
+  Après chaque ajout ou suppression, on réassigne dataSource.data avec [...tableau]
+  pour forcer la détection de changements du mat-table.
+-->
+
+<div style="margin-bottom: 1rem">
+  <button mat-flat-button (click)="ouvrirDialog()">
+    <mat-icon>add</mat-icon>
+    Ajouter un contact
+  </button>
+</div>
+
+<table mat-table [dataSource]="dataSource">
+
+  <!-- Colonne Nom -->
+  <ng-container matColumnDef="nom">
+    <th mat-header-cell *matHeaderCellDef>Nom</th>
+    <td mat-cell *matCellDef="let c">{{ c.nom }}</td>
+  </ng-container>
+
+  <!-- Colonne Email -->
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef>Email</th>
+    <td mat-cell *matCellDef="let c">{{ c.email }}</td>
+  </ng-container>
+
+  <!-- Colonne Action -->
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef>Action</th>
+    <td mat-cell *matCellDef="let c">
+      <button mat-icon-button
+              color="warn"
+              (click)="supprimer(c)"
+              aria-label="Supprimer {{ c.nom }}">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="colonnes"></tr>
+  <tr mat-row *matRowDef="let row; columns: colonnes;"></tr>
+
+</table>

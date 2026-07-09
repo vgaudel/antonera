@@ -10,7 +10,7 @@ import { Ei07Reactions } from './ei07-reactions/ei07-reactions';
 import { Ei08Formulaire } from './ei08-formulaire/ei08-formulaire';
 import { Ei09Todos } from './ei09-todos/ei09-todos';
 import { Ei10Boutique } from './ei10-boutique/ei10-boutique';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 
 
 @Component({
@@ -19,13 +19,15 @@ import { ActivatedRoute } from '@angular/router';
     FormsModule,
     Ei01Carte, Ei02Notes, Ei03Contacts, Ei04Cinema, Ei05Alertes,
     Ei06Couleur, Ei07Reactions, Ei08Formulaire, Ei09Todos, Ei10Boutique,
-  ],
+    RouterOutlet
+],
   templateUrl: './exos-io.html',
   styleUrl: './exos-io.scss',
 })
 export class ExosIO {
 
-  private _routeService = inject(ActivatedRoute)
+  private _routeService = inject(ActivatedRoute);
+  private _router = inject(Router);
 
   composants: string[] = [
     'ei01-carte',
@@ -39,16 +41,12 @@ export class ExosIO {
     'ei09-todos',
     'ei10-boutique'
   ];
-  selectedComponent: string;
+  selectedComponent: string = this.composants[0];
   isIndiceOutOfBounds : boolean = false;
 
-  constructor(){
-    
-    let indice:number = this._routeService.snapshot.paramMap.get('numExo') ? Number(this._routeService.snapshot.paramMap.get('numExo')) : 1;
-    this.isIndiceOutOfBounds= (indice-1<0) || (indice-1>this.composants.length-1);
-    console.log("out of bounds ? " + Number(this._routeService.snapshot.paramMap.get('numExo')) + " " + this.isIndiceOutOfBounds);
-    this.selectedComponent = this.composants[
-      (this.isIndiceOutOfBounds)?0:indice-1];
-    
+  goToExercice(){
+    // Navigue vers l'exercice sélectionné dans le select
+    this._router.navigate(['exos-io',this.selectedComponent]);
   }
+
 }

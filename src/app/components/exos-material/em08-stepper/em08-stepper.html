@@ -1,0 +1,97 @@
+<h3>Em08 — Formulaire en étapes</h3>
+
+<!--
+  mat-stepper [linear]="true" : l'utilisateur ne peut avancer
+  que si l'étape courante est valide.
+  [stepControl]="formGroup" : Material vérifie la validité du FormGroup.
+  matStepperNext / matStepperPrevious : directives sur les boutons
+  pour naviguer entre les étapes.
+-->
+<mat-stepper [linear]="true">
+
+  <!-- Étape 1 : Compte -->
+  <mat-step [stepControl]="compteForm" label="Compte">
+    <form [formGroup]="compteForm">
+      <div style="display: flex; flex-direction: column; gap: 1rem; padding: 1rem 0">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Nom d'utilisateur</mat-label>
+          <input matInput formControlName="userName">
+          @if (compteForm.get('userName')?.hasError('required')) {
+            <mat-error>Champ requis</mat-error>
+          }
+          @if (compteForm.get('userName')?.hasError('minlength')) {
+            <mat-error>Minimum 3 caractères</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Mot de passe</mat-label>
+          <input matInput type="password" formControlName="password">
+          @if (compteForm.get('password')?.hasError('required')) {
+            <mat-error>Champ requis</mat-error>
+          }
+          @if (compteForm.get('password')?.hasError('minlength')) {
+            <mat-error>Minimum 6 caractères</mat-error>
+          }
+        </mat-form-field>
+
+      </div>
+      <div>
+        <button mat-flat-button matStepperNext [disabled]="compteForm.invalid">Suivant</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <!-- Étape 2 : Informations personnelles -->
+  <mat-step [stepControl]="infoForm" label="Informations">
+    <form [formGroup]="infoForm">
+      <div style="display: flex; flex-direction: column; gap: 1rem; padding: 1rem 0">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Prénom</mat-label>
+          <input matInput formControlName="prenom">
+          <mat-error>Champ requis</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Nom</mat-label>
+          <input matInput formControlName="nom">
+          <mat-error>Champ requis</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email">
+          @if (infoForm.get('email')?.hasError('required')) {
+            <mat-error>Champ requis</mat-error>
+          }
+          @if (infoForm.get('email')?.hasError('email')) {
+            <mat-error>Format email invalide</mat-error>
+          }
+        </mat-form-field>
+
+      </div>
+      <div style="display: flex; gap: 0.5rem">
+        <button mat-stroked-button matStepperPrevious>Retour</button>
+        <button mat-flat-button matStepperNext [disabled]="infoForm.invalid">Suivant</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <!-- Étape 3 : Confirmation (lecture seule) -->
+  <mat-step label="Confirmation">
+    <div style="padding: 1rem 0">
+      <h4>Récapitulatif</h4>
+      <p><strong>Nom d'utilisateur :</strong> {{ compteForm.value.userName }}</p>
+      <p><strong>Prénom :</strong> {{ infoForm.value.prenom }}</p>
+      <p><strong>Nom :</strong> {{ infoForm.value.nom }}</p>
+      <p><strong>Email :</strong> {{ infoForm.value.email }}</p>
+    </div>
+    <div style="display: flex; gap: 0.5rem">
+      <button mat-stroked-button matStepperPrevious>Retour</button>
+      <button mat-flat-button>Valider l'inscription</button>
+    </div>
+  </mat-step>
+
+</mat-stepper>

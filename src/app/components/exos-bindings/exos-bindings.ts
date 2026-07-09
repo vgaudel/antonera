@@ -11,6 +11,7 @@ import { Eb08For } from './eb08-for/eb08-for';
 import { Eb09Switch } from './eb09-switch/eb09-switch';
 import { Eb10Combine } from './eb10-combine/eb10-combine';
 import { ActivatedRoute } from '@angular/router';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-exos-bindings',

@@ -1,0 +1,49 @@
+<h3>Em05 — Onglets de profil</h3>
+
+<!--
+  mat-tab-group : conteneur multi-onglets.
+  Chaque <mat-tab> reçoit un label affiché dans la barre d'onglets.
+  Le 3ème onglet est en lecture seule : pas de mat-form-field, seulement {{}}
+  mais les données se mettent à jour en temps réel grâce à [(ngModel)].
+-->
+<mat-tab-group>
+
+  <!-- Onglet 1 : Identité -->
+  <mat-tab label="Identité">
+    <div style="display: flex; flex-direction: column; gap: 1rem; padding: 1rem 0">
+      <mat-form-field appearance="outline">
+        <mat-label>Prénom</mat-label>
+        <input matInput [(ngModel)]="profil.prenom" name="prenom">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Nom</mat-label>
+        <input matInput [(ngModel)]="profil.nom" name="nom">
+      </mat-form-field>
+    </div>
+  </mat-tab>
+
+  <!-- Onglet 2 : Contact -->
+  <mat-tab label="Contact">
+    <div style="display: flex; flex-direction: column; gap: 1rem; padding: 1rem 0">
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" [(ngModel)]="profil.email" name="email">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Téléphone</mat-label>
+        <input matInput [(ngModel)]="profil.telephone" name="telephone">
+      </mat-form-field>
+    </div>
+  </mat-tab>
+
+  <!-- Onglet 3 : Récapitulatif (lecture seule) -->
+  <mat-tab label="Récapitulatif">
+    <div style="padding: 1rem 0">
+      <p><strong>Prénom :</strong> {{ profil.prenom || '—' }}</p>
+      <p><strong>Nom :</strong> {{ profil.nom || '—' }}</p>
+      <p><strong>Email :</strong> {{ profil.email || '—' }}</p>
+      <p><strong>Téléphone :</strong> {{ profil.telephone || '—' }}</p>
+    </div>
+  </mat-tab>
+
+</mat-tab-group>

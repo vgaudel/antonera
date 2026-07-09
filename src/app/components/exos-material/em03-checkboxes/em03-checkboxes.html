@@ -1,0 +1,21 @@
+<h3>Em03 — Liste de courses</h3>
+
+<!--
+  [checked] lie la valeur affichée, (change) met à jour le tableau.
+  On évite [(ngModel)] pour ne pas importer FormsModule ici.
+-->
+<div style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem">
+  @for (article of articles; track article.nom) {
+    <mat-checkbox
+      [checked]="article.coche"
+      (change)="article.coche = $event.checked">
+      {{ article.nom }}
+    </mat-checkbox>
+  }
+</div>
+
+<p>
+  Cochés : <strong>{{ coches }}</strong> / {{ articles.length }}
+  &nbsp;—&nbsp;
+  Restants : <strong>{{ restants }}</strong>
+</p>
