@@ -24,6 +24,7 @@ import { Ei08Formulaire } from './components/exos-io/ei08-formulaire/ei08-formul
 import { Ei09Todos } from './components/exos-io/ei09-todos/ei09-todos';
 import { Ei10Boutique } from './components/exos-io/ei10-boutique/ei10-boutique';
 import { ExosMaterial } from './components/exos-material/exos-material';
+import { ProduitTable } from './components/produit-table/produit-table';
 
 export const routes: Routes = [
     { path : 'welcome', component : Welcome},
@@ -40,6 +41,7 @@ export const routes: Routes = [
     { path : 'pipes', component : Pipes},
     { path : 'exos-pipes', component : ExosPipes},
     { path : 'produits', component : ProduitList},
+    { path : 'produits-table', component : ProduitTable},
     { path : 'votes', component : VoteList},
     { 
         path : 'exos-io', 
