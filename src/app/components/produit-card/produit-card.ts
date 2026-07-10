@@ -16,7 +16,7 @@ export class ProduitCard {
   produit = input.required<IProduct>();
 
   constructor(){
-    effect(() => console.log("Produit depuis effect" + this.produit().name));
+    //effect(() => console.log("Produit depuis effect" + this.produit().name));
   }
 
 }

@@ -9,7 +9,9 @@
   4. Le flux de données est UNIDIRECTIONNEL : Parent → Enfant uniquement.
 -->
 
-@for(produitItem of produitsList(); track produitItem.id){
+@for(produitItem of produitsList$ | async; track produitItem.id){
     <app-produit-card [produit]="produitItem" />
+}@empty {
+  <p>Pas de produits depuis le back</p>
 }
 

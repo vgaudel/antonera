@@ -1,0 +1,104 @@
+<div class="user-form">
+
+  <h3>Ajouter un user</h3>
+
+  <!--
+    (submit) : on écoute l'envoi du formulaire. On appelle onSubmit() et on
+    empêche le rechargement de la page grâce à $event.preventDefault().
+    Ici on n'utilise PAS ngSubmit : les Signal Forms fonctionnent avec un
+    <form> HTML standard.
+  -->
+  <form (submit)="$event.preventDefault(); onSubmit()" >
+
+    <!--
+      @let crée une variable locale au template.
+      userForm.nom est le champ ; on l'APPELLE comme une fonction
+      « userForm.nom() » pour obtenir son état (errors, touched, ...).
+    -->
+    @let nomField = userForm.name();
+    @let passwordField = userForm.password();
+    @let confirmField = userForm.confirmPassword();
+    @let birthField = userForm.birthday();
+    @let roleField = userForm.role();
+
+    <!-- NOM -->
+    <label class="champ">
+      <span>Nom</span>
+      <!-- [formField] relie l'<input> au champ « nom » du formulaire signal. -->
+      <input type="text" [formField]="userForm.name" placeholder="Ex : Marie Dupont" />
+      <!-- On n'affiche les erreurs qu'une fois le champ « touché ». -->
+      @if (nomField.touched()) {
+        @for (erreur of nomField.errors(); track erreur.kind) {
+          <small class="erreur">{{ erreur.message }}</small>
+        }
+      }
+    </label>
+
+    <!-- MOT DE PASSE -->
+    <label class="champ">
+      <span>Mot de passe</span>
+      <input type="password" [formField]="userForm.password" placeholder="8 caractères minimum" />
+      @if (passwordField.touched()) {
+        @for (erreur of passwordField.errors(); track erreur.kind) {
+          <small class="erreur">{{ erreur.message }}</small>
+        }
+      }
+    </label>
+
+    <!-- CONFIRMATION DU MOT DE PASSE (double saisie) -->
+    <label class="champ">
+      <span>Confirmer le mot de passe</span>
+      <input type="password" [formField]="userForm.confirmPassword" placeholder="Ressaisissez le mot de passe" />
+      @if (confirmField.touched()) {
+        @for (erreur of confirmField.errors(); track erreur.kind) {
+          <small class="erreur">{{ erreur.message }}</small>
+        }
+      }
+    </label>
+
+    <!-- DATE DE NAISSANCE -->
+    <label class="champ">
+      <span>Date de naissance</span>
+      <input type="date" [formField]="userForm.birthday" />
+      @if (birthField.touched()) {
+        @for (erreur of birthField.errors(); track erreur.kind) {
+          <small class="erreur">{{ erreur.message }}</small>
+        }
+      }
+    </label>
+
+    <!-- RÔLE -->
+    <label class="champ">
+      <span>Rôle</span>
+      <select [formField]="userForm.role">
+        <option value="">— Choisir un rôle —</option>
+        <option value="admin">Administrateur</option>
+        <option value="editeur">Éditeur</option>
+        <option value="lecteur">Lecteur</option>
+      </select>
+      @if (roleField.touched()) {
+        @for (erreur of roleField.errors(); track erreur.kind) {
+          <small class="erreur">{{ erreur.message }}</small>
+        }
+      }
+    </label>
+
+    <button type="submit">Enregistrer</button>
+  </form>
+
+  <!-- Récapitulatif des users créés (démonstration) -->
+  @if (users().length > 0) {
+    <h4>users enregistrés ({{ users().length }})</h4>
+    <ul class="liste">
+      @for (u of users(); track $index) {
+        <li>
+          <strong>{{ u.name }}</strong> — {{ u.role }}
+          @if (u.birthday) {
+            (né(e) le {{ u.birthday | date: 'dd/MM/yyyy' }})
+          }
+        </li>
+      }
+    </ul>
+  }
+
+</div>

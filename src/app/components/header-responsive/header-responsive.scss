@@ -1,0 +1,40 @@
+
+.header-v2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 12px 0 var(--couleur-ombre);
+}
+
+/* Logo + titre, cliquable */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+.links {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.spacer {
+    flex:1;
+}
+
+.active {
+    font-weight: bold;
+}
+
+.burger {
+    display: none;
+}
+
+@media (max-width: 1100px) {
+    .links {
+        display: none;
+    }
+    .burger {
+        display : inline-flex;
+    }
+}

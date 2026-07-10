@@ -25,6 +25,8 @@ import { Ei09Todos } from './components/exos-io/ei09-todos/ei09-todos';
 import { Ei10Boutique } from './components/exos-io/ei10-boutique/ei10-boutique';
 import { ExosMaterial } from './components/exos-material/exos-material';
 import { ProduitTable } from './components/produit-table/produit-table';
+import { ProduitTableFromApiRest } from './components/produit-table-from-api-rest/produit-table-from-api-rest';
+import { UserAddForm } from './components/user-add-form/user-add-form';
 
 export const routes: Routes = [
     { path : 'welcome', component : Welcome},
@@ -42,6 +44,8 @@ export const routes: Routes = [
     { path : 'exos-pipes', component : ExosPipes},
     { path : 'produits', component : ProduitList},
     { path : 'produits-table', component : ProduitTable},
+    { path : 'produits-table-api', component : ProduitTableFromApiRest},
+    { path : 'add-user', component : UserAddForm},
     { path : 'votes', component : VoteList},
     { 
         path : 'exos-io', 

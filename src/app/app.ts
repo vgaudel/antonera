@@ -11,6 +11,8 @@ import { VoteList } from './components/vote-list/vote-list';
 import { ExosIO } from './components/exos-io/exos-io';
 import { Pipes } from './components/pipes/pipes';
 import { RouterOutlet } from '@angular/router';
+import { HeaderV2 } from "./components/header-v2/header-v2";
+import { HeaderResponsive } from "./components/header-responsive/header-responsive";
 
 @Component({
   selector: 'app-root',
@@ -18,7 +20,9 @@ import { RouterOutlet } from '@angular/router';
     RouterOutlet,
     Header,
     Footer,
-  ],
+    HeaderV2,
+    HeaderResponsive
+],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

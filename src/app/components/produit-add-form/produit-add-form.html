@@ -9,19 +9,29 @@
         @let categoryFC = form.get('category');
         @let stockFC = form.get('stock');
 
+        @if (form?.hasError('identicalNameAndDescription')) {
+        <mat-error>La description ne peut pas être identique au nom.</mat-error>
+        }
+
         <mat-form-field appearance="outline">
             <mat-label>
                 Nom du produit
             </mat-label>
             <input matInput formControlName="name" placeholder="Entrez le nom ici">
-            @if(nameFC?.hasError('required')){
-                <mat-error>Le nom du produit est obligatoire.</mat-error>
-            } @else if (nameFC?.hasError('minlength')) {
-                <mat-error>Nom de {{nameFC?.getError('minlength').requiredLength}} caractères.
-                    Actuellement {{nameFC?.getError('minlength').actualLength}} caractère@if(nameFC?.getError('minlength').actualLength>1){s}.
-                </mat-error>
+            @if(nameFC?.pending){
+                <mat-hint>Vérification en cours</mat-hint>
+            } @else if (nameFC?.hasError('nomPris')){
+                <mat-error>Produit déjà existant</mat-error>
             }
-            
+            @if(nameFC?.hasError('required')){
+            <mat-error>Le nom du produit est obligatoire.</mat-error>
+            } @else if (nameFC?.hasError('minlength')) {
+            <mat-error>Nom de {{nameFC?.getError('minlength').requiredLength}} caractères.
+                Actuellement {{nameFC?.getError('minlength').actualLength}}
+                caractère@if(nameFC?.getError('minlength').actualLength>1){s}.
+            </mat-error>
+            }
+
         </mat-form-field>
 
         <mat-form-field appearance="outline">
@@ -29,50 +39,54 @@
                 Description
             </mat-label>
             <input matInput formControlName="description" placeholder="Ex. Pack d'outils...">
-             @if(descriptionFC?.hasError('required')){
-                <mat-error>La description du produit est obligatoire.</mat-error>
+            @if(descriptionFC?.hasError('required')){
+            <mat-error>La description du produit est obligatoire.</mat-error>
             } @else if (descriptionFC?.hasError('minlength')) {
-                <mat-error>Description de {{descriptionFC?.getError('minlength').requiredLength}} caractères minimum.
-                    Actuellement {{descriptionFC?.getError('minlength').actualLength}} caractère@if(nameFC?.getError('minlength').actualLength>1){s}.
-                </mat-error>
+            <mat-error>Description de {{descriptionFC?.getError('minlength').requiredLength}} caractères minimum.
+                Actuellement {{descriptionFC?.getError('minlength').actualLength}}
+                caractère@if(nameFC?.getError('minlength').actualLength>1){s}.
+            </mat-error>
             }@else if (descriptionFC?.hasError('maxlength')) {
-                <mat-error>Description de {{descriptionFC?.getError('maxlength').requiredLength}} caractères maximum.
-                    Actuellement {{descriptionFC?.getError('maxlength').actualLength}} caractère@if(descriptionFC?.getError('maxlength').actualLength>1){s}.
-                </mat-error>
+            <mat-error>Description de {{descriptionFC?.getError('maxlength').requiredLength}} caractères maximum.
+                Actuellement {{descriptionFC?.getError('maxlength').actualLength}}
+                caractère@if(descriptionFC?.getError('maxlength').actualLength>1){s}.
+            </mat-error>
             }
         </mat-form-field>
-        
+
         <mat-form-field appearance="outline">
             <mat-label>
                 Prix
             </mat-label>
             <input matInput type="number" formControlName="price" placeholder="99.99">
-             @if(priceFC?.hasError('required')){
-                <mat-error>Le prix du produit est obligatoire.</mat-error>
+            @if(priceFC?.hasError('required')){
+            <mat-error>Le prix du produit est obligatoire.</mat-error>
             } @else if (priceFC?.hasError('min')) {
-                <mat-error>Le prix doit être supérieur à 0.</mat-error>
+            <mat-error>Le prix doit être supérieur à 0.</mat-error>
             }
         </mat-form-field>
-        
+
         <mat-form-field appearance="outline">
             <mat-label>
                 Categorie
             </mat-label>
             <input matInput formControlName="category" placeholder="Ex. Matériel jardinage">
-             @if(categoryFC?.hasError('required')){
-                <mat-error>La catégorie du produit est obligatoire.</mat-error>
-            } 
+            @if(categoryFC?.hasError('required')){
+            <mat-error>La catégorie du produit est obligatoire.</mat-error>
+            } @else if(categoryFC?.hasError('hasDigits')){
+            <mat-error>La catégorie ne doit pas contenir de chiffre.</mat-error>
+            }
         </mat-form-field>
-        
+
         <mat-form-field appearance="outline">
             <mat-label>
                 Stock
             </mat-label>
             <input matInput type='number' formControlName="stock" placeholder="123">
-             @if(stockFC?.hasError('required')){
-                <mat-error>Le prix du produit est obligatoire.</mat-error>
+            @if(stockFC?.hasError('required')){
+            <mat-error>Le prix du produit est obligatoire.</mat-error>
             } @else if (stockFC?.hasError('min')) {
-                <mat-error>Le stock doit être positif ou nul.</mat-error>
+            <mat-error>Le stock doit être positif ou nul.</mat-error>
             }
         </mat-form-field>
 
